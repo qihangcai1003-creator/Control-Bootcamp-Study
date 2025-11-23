@@ -92,7 +92,7 @@ $$
 
 ---
 
-## Part 2: Step-by-Step Calculation Example
+[## Part 2: Step-by-Step Calculation Example
 
 To make the theory concrete, we will solve a specific $2 \times 2$ linear differential equation $\dot{x} = Ax$ manually.
 
