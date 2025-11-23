@@ -81,7 +81,12 @@ $$
 The series inside the brackets is exactly the definition of $e^{Dt}$. Since $D$ is a diagonal matrix, its exponential is simply the exponential of its diagonal elements:
 
 $$
-e^{Dt} = \begin{bmatrix} e^{\lambda_1 t} & 0 \\ 0 & e^{\lambda_n t} \end{bmatrix}
+e^{Dt} = \begin{bmatrix} 
+e^{\lambda_1 t} & 0 & \dots & 0 \\ 
+0 & e^{\lambda_2 t} & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & e^{\lambda_n t} 
+\end{bmatrix}
 $$
 
 Thus, we arrive at the famous formula:
@@ -124,7 +129,7 @@ $$
 $$
 \begin{aligned}
 (4-\lambda)(1-\lambda) - (-2)(1) &= 0 \\
-(\lambda^2 - 5\lambda + 4) + 2 &= 0 \\
+(4 - 5\lambda + \lambda^2) + 2 &= 0 \\
 \lambda^2 - 5\lambda + 6 &= 0 \\
 (\lambda - 2)(\lambda - 3) &= 0
 \end{aligned}
@@ -149,7 +154,7 @@ $$
 \begin{bmatrix} 2 & -2 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} \xi_{1a} \\ \xi_{1b} \end{bmatrix} = 0
 $$
 
-Equation: $1\xi_{1a} - 1\xi_{1b} = 0 \Rightarrow \xi_{1a} = \xi_{1b}$.
+From the first row: $2\xi_{1a} - 2\xi_{1b} = 0 \Rightarrow \xi_{1a} = \xi_{1b}$.
 Let $\xi_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$.
 
 **For $\lambda_2 = 3$:**
@@ -164,7 +169,7 @@ $$
 \begin{bmatrix} 1 & -2 \\ 1 & -2 \end{bmatrix} \begin{bmatrix} \xi_{2a} \\ \xi_{2b} \end{bmatrix} = 0
 $$
 
-Equation: $1\xi_{2a} - 2\xi_{2b} = 0 \Rightarrow \xi_{2a} = 2\xi_{2b}$.
+From the first row: $1\xi_{2a} - 2\xi_{2b} = 0 \Rightarrow \xi_{2a} = 2\xi_{2b}$.
 Let $\xi_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$.
 
 #### Step 3: Construct Matrices $T$ and $D$
@@ -219,10 +224,10 @@ $$
 x(t) = \begin{bmatrix} -e^{2t} + 2e^{3t} & 2e^{2t} - 2e^{3t} \\ -e^{2t} + e^{3t} & 2e^{2t} - e^{3t} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
 $$
 
-Perform matrix-vector multiplication:
+Perform matrix-vector multiplication (essentially selecting the first column):
 
 $$
-x(t) = \begin{bmatrix} (-e^{2t} + 2e^{3t})(1) + (2e^{2t} - 2e^{3t})(0) \\ (-e^{2t} + e^{3t})(1) + (2e^{2t} - e^{3t})(0) \end{bmatrix}
+x(t) = \begin{bmatrix} (-e^{2t} + 2e^{3t})(1) + (0) \\ (-e^{2t} + e^{3t})(1) + (0) \end{bmatrix}
 $$
 
 **Final Result:**
