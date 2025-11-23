@@ -92,12 +92,141 @@ $$
 
 ---
 
-Part 2: Step-by-Step Calculation ExampleTo make the theory concrete, we will solve a specific $2 \times 2$ linear differential equation $\dot{x} = Ax$ manually.1. The Problem SetupSystem Matrix:$$A = \begin{bmatrix} 4 & -2 \\ 1 & 1 \end{bmatrix}$$Initial Condition:$$x(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$Goal: Find the state vector $x(t)$.2. Calculation WorkflowStep 1: Find Eigenvalues ($\lambda$)Solve the characteristic equation $\det(A - \lambda I) = 0$:$$\det \begin{bmatrix} 4-\lambda & -2 \\ 1 & 1-\lambda \end{bmatrix} = 0$$$$\begin{aligned}
+## Part 2: Step-by-Step Calculation Example
+
+To make the theory concrete, we will solve a specific $2 \times 2$ linear differential equation $\dot{x} = Ax$ manually.
+
+### 1. The Problem Setup
+
+**System Matrix:**
+
+$$
+A = \begin{bmatrix} 4 & -2 \\ 1 & 1 \end{bmatrix}
+$$
+
+**Initial Condition:**
+
+$$
+x(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+$$
+
+**Goal:** Find the state vector $x(t)$.
+
+### 2. Calculation Workflow
+
+#### Step 1: Find Eigenvalues ($\lambda$)
+Solve the characteristic equation $\det(A - \lambda I) = 0$:
+
+$$
+\det \begin{bmatrix} 4-\lambda & -2 \\ 1 & 1-\lambda \end{bmatrix} = 0
+$$
+
+$$
+\begin{aligned}
 (4-\lambda)(1-\lambda) - (-2)(1) &= 0 \\
 (\lambda^2 - 5\lambda + 4) + 2 &= 0 \\
 \lambda^2 - 5\lambda + 6 &= 0 \\
 (\lambda - 2)(\lambda - 3) &= 0
-\end{aligned}$$Result:$\lambda_1 = 2$$\lambda_2 = 3$Step 2: Find Eigenvectors ($\xi$)Solve $(A - \lambda I)\xi = 0$ for each $\lambda$.For $\lambda_1 = 2$:$$\begin{bmatrix} 4-2 & -2 \\ 1 & 1-2 \end{bmatrix} \begin{bmatrix} \xi_{1a} \\ \xi_{1b} \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$$Simplifying:$$\begin{bmatrix} 2 & -2 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} \xi_{1a} \\ \xi_{1b} \end{bmatrix} = 0$$Equation: $1\xi_{1a} - 1\xi_{1b} = 0 \Rightarrow \xi_{1a} = \xi_{1b}$.Let $\xi_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$.For $\lambda_2 = 3$:$$\begin{bmatrix} 4-3 & -2 \\ 1 & 1-3 \end{bmatrix} \begin{bmatrix} \xi_{2a} \\ \xi_{2b} \end{bmatrix} = 0$$Simplifying:$$\begin{bmatrix} 1 & -2 \\ 1 & -2 \end{bmatrix} \begin{bmatrix} \xi_{2a} \\ \xi_{2b} \end{bmatrix} = 0$$Equation: $1\xi_{2a} - 2\xi_{2b} = 0 \Rightarrow \xi_{2a} = 2\xi_{2b}$.Let $\xi_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$.Step 3: Construct Matrices $T$ and $D$$$T = [\xi_1, \xi_2] = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}$$$$D = \begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix} = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$$Step 4: Calculate $T^{-1}$For a $2 \times 2$ matrix, the inverse is:$$\begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$Determinant of $T$: $(1)(1) - (2)(1) = -1$.$$T^{-1} = \frac{1}{-1} \begin{bmatrix} 1 & -2 \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} -1 & 2 \\ 1 & -1 \end{bmatrix}$$Step 5: Calculate $e^{At} = T e^{Dt} T^{-1}$1. Compute $e^{Dt}$ (Easy part):$$e^{Dt} = \begin{bmatrix} e^{2t} & 0 \\ 0 & e^{3t} \end{bmatrix}$$2. Multiply $T e^{Dt}$:$$T e^{Dt} = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} e^{2t} & 0 \\ 0 & e^{3t} \end{bmatrix} = \begin{bmatrix} e^{2t} & 2e^{3t} \\ e^{2t} & e^{3t} \end{bmatrix}$$3. Multiply $(T e^{Dt}) T^{-1}$:$$\begin{aligned}
+\end{aligned}
+$$
+
+**Result:**
+* $\lambda_1 = 2$
+* $\lambda_2 = 3$
+
+#### Step 2: Find Eigenvectors ($\xi$)
+Solve $(A - \lambda I)\xi = 0$ for each $\lambda$.
+
+**For $\lambda_1 = 2$:**
+
+$$
+\begin{bmatrix} 4-2 & -2 \\ 1 & 1-2 \end{bmatrix} \begin{bmatrix} \xi_{1a} \\ \xi_{1b} \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
+
+Simplifying:
+
+$$
+\begin{bmatrix} 2 & -2 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} \xi_{1a} \\ \xi_{1b} \end{bmatrix} = 0
+$$
+
+Equation: $1\xi_{1a} - 1\xi_{1b} = 0 \Rightarrow \xi_{1a} = \xi_{1b}$.
+Let $\xi_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$.
+
+**For $\lambda_2 = 3$:**
+
+$$
+\begin{bmatrix} 4-3 & -2 \\ 1 & 1-3 \end{bmatrix} \begin{bmatrix} \xi_{2a} \\ \xi_{2b} \end{bmatrix} = 0
+$$
+
+Simplifying:
+
+$$
+\begin{bmatrix} 1 & -2 \\ 1 & -2 \end{bmatrix} \begin{bmatrix} \xi_{2a} \\ \xi_{2b} \end{bmatrix} = 0
+$$
+
+Equation: $1\xi_{2a} - 2\xi_{2b} = 0 \Rightarrow \xi_{2a} = 2\xi_{2b}$.
+Let $\xi_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$.
+
+#### Step 3: Construct Matrices $T$ and $D$
+
+$$
+T = [\xi_1, \xi_2] = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}
+$$
+
+$$
+D = \begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix} = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}
+$$
+
+#### Step 4: Calculate $T^{-1}$
+For a $2 \times 2$ matrix, the inverse is:
+
+$$
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+$$
+
+Determinant of $T$: $(1)(1) - (2)(1) = -1$.
+
+$$
+T^{-1} = \frac{1}{-1} \begin{bmatrix} 1 & -2 \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} -1 & 2 \\ 1 & -1 \end{bmatrix}
+$$
+
+#### Step 5: Calculate $e^{At} = T e^{Dt} T^{-1}$
+
+**1. Compute $e^{Dt}$ (Easy part):**
+
+$$
+e^{Dt} = \begin{bmatrix} e^{2t} & 0 \\ 0 & e^{3t} \end{bmatrix}
+$$
+
+**2. Multiply $T e^{Dt}$:**
+
+$$
+T e^{Dt} = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} e^{2t} & 0 \\ 0 & e^{3t} \end{bmatrix} = \begin{bmatrix} e^{2t} & 2e^{3t} \\ e^{2t} & e^{3t} \end{bmatrix}
+$$
+
+**3. Multiply $(T e^{Dt}) T^{-1}$:**
+
+$$
+\begin{aligned}
 e^{At} &= \begin{bmatrix} e^{2t} & 2e^{3t} \\ e^{2t} & e^{3t} \end{bmatrix} \begin{bmatrix} -1 & 2 \\ 1 & -1 \end{bmatrix} \\
 &= \begin{bmatrix} (-e^{2t} + 2e^{3t}) & (2e^{2t} - 2e^{3t}) \\ (-e^{2t} + e^{3t}) & (2e^{2t} - e^{3t}) \end{bmatrix}
-\end{aligned}$$Step 6: Final Solution $x(t) = e^{At}x(0)$$$x(t) = \begin{bmatrix} -e^{2t} + 2e^{3t} & 2e^{2t} - 2e^{3t} \\ -e^{2t} + e^{3t} & 2e^{2t} - e^{3t} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$Perform matrix-vector multiplication:$$x(t) = \begin{bmatrix} (-e^{2t} + 2e^{3t})(1) + (2e^{2t} - 2e^{3t})(0) \\ (-e^{2t} + e^{3t})(1) + (2e^{2t} - e^{3t})(0) \end{bmatrix}$$Final Result:$$x(t) = \begin{bmatrix} 2e^{3t} - e^{2t} \\ e^{3t} - e^{2t} \end{bmatrix}$$
+\end{aligned}
+$$
+
+#### Step 6: Final Solution $x(t) = e^{At}x(0)$
+
+$$
+x(t) = \begin{bmatrix} -e^{2t} + 2e^{3t} & 2e^{2t} - 2e^{3t} \\ -e^{2t} + e^{3t} & 2e^{2t} - e^{3t} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+$$
+
+Perform matrix-vector multiplication:
+
+$$
+x(t) = \begin{bmatrix} (-e^{2t} + 2e^{3t})(1) + (2e^{2t} - 2e^{3t})(0) \\ (-e^{2t} + e^{3t})(1) + (2e^{2t} - e^{3t})(0) \end{bmatrix}
+$$
+
+**Final Result:**
+
+$$
+x(t) = \begin{bmatrix} 2e^{3t} - e^{2t} \\ e^{3t} - e^{2t} \end{bmatrix}
+$$
