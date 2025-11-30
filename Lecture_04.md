@@ -1,4 +1,4 @@
-# 深度解析：非线性动力系统的线性化与稳定性分析
+# 非线性动力系统的线性化与稳定性分析
 # In-Depth Analysis: Linearization and Stability of Nonlinear Dynamical Systems
 
 > **Note**: 本文档包含关于如何将复杂的非线性物理系统转化为线性系统并分析其稳定性的详细数学推导。
